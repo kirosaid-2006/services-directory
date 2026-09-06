@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>katrina hub - دليل خدمات أبناء الكنيسة</title>
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- React 18 & Babel Standalone -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    /* =====================================================
+       التصميم الأصلي الكامل - katrina hub
+    ===================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background:
+        linear-gradient(rgba(255,255,255,.25), rgba(255,255,255,.70)),
+        url("kat.png") center center / cover no-repeat fixed;
+      min-height: 100vh;
+      direction: rtl;
+      color: #212529;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1250px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    /* Sticky Navbar */
+    .navbar {
+      background: linear-gradient(180deg, #1E3A8A, #243F9E);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 14px 0;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .navbar i.fa-church {
+      font-size: 24px;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .navbar-links button, .navbar-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .navbar-links button:hover, .navbar-links a:hover {
+      background: #ffffff;
+      color: #1E3A8A;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 40px;
+      font-weight: 900;
+      color: #1E3A8A;
+      margin-bottom: 6px;
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: #2D3748;
+      font-weight: 500;
+    }
+
+    /* Search Box */
+    .search-box-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr auto;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .search-input {
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      border-color: #1E3A8A;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+    }
+
+    .btn-search {
+      background: linear-gradient(135deg, #1E3A8A, #2563EB);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      font-family: 'Cairo', sans-serif;
+    }
+    .btn-search:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(30, 58, 138, 0.35);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 20px 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+      margin-bottom: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    .stat-item h4 {
+      font-size: 28px;
+      font-weight: 900;
+      color: #1E3A8A;
+      margin: 0;
+    }
+    .stat-item p {
+      font-size: 13px;
+      color: #64748b;
+      margin: 2px 0 0;
+      font-weight: 700;
+    }
+
+    /* Grid Desktop = 4 */
+    .professions-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    /* Profession Card */
+    .profession-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+      transition: .35s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .profession-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 20px 55px rgba(0,0,0,.25);
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .profession-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #1E3A8A, #2563EB);
+      color: #fff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .profession-content {
+      flex: 1;
+      text-align: right;
+    }
+
+    .profession-content h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    .profession-content p {
+      font-size: 13px;
+      color: #555;
+    }
+
+    .profession-arrow {
+      color: #777;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .profession-card:hover .profession-arrow {
+      color: #1E3A8A;
+      transform: translateX(-4px);
+    }
+
+    /* Provider Cards */
+    .provider-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: all 0.3s ease;
+    }
+    .provider-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    .btn-call {
+      background: linear-gradient(135deg, #1E3A8A, #2563EB);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      flex: 1;
+      border: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .btn-call:hover {
+      box-shadow: 0 6px 15px rgba(30, 58, 138, 0.4);
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      flex: 1;
+    }
+    .btn-whatsapp:hover {
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(180deg, #1E3A8A, #243F9E);
+      padding: 35px 0;
+      margin-top: 60px;
+      box-shadow: 0 -8px 20px rgba(30, 58, 138, 0.4);
+      border-top: 3px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .admin-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #ffffff, #f0f5ff);
+      color: #1E3A8A;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .admin-pill-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      background: #ffffff;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 20px;
+    }
+
+    @media (max-width: 992px) {
+      .professions-grid { grid-template-columns: repeat(3, 1fr); }
+      .search-box-card { grid-template-columns: 1fr 1fr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .professions-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .profession-card { flex-direction: column; text-align: center; padding: 14px; }
+      .profession-content { text-align: center; }
+      .profession-icon { width: 48px; height: 48px; font-size: 18px; }
+      .profession-content h3 { font-size: 13px; }
+      .profession-content p { font-size: 11px; }
+      .profession-arrow { display: none; }
+      .search-box-card { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const formatWhatsapp = (phone) => {
+      let clean = (phone || '').replace(/\D/g, '');
+      if (clean.startsWith('0')) clean = '2' + clean;
+      return `https://wa.me/${clean}`;
+    };
+
+    // Star Component
+    const StarRating = ({ rating = 0, interactive = false, onRatingChange = () => {}, size = '16px' }) => {
+      const [hover, setHover] = useState(0);
+      return (
+        <div style={{ display: 'inline-flex', gap: '3px', direction: 'ltr' }}>
+          {[1, 2, 3, 4, 5].map((s) => {
+            const filled = (hover || Math.round(rating)) >= s;
+            return (
+              <span
+                key={s}
+                onClick={() => interactive && onRatingChange(s)}
+                onMouseEnter={() => interactive && setHover(s)}
+                onMouseLeave={() => interactive && setHover(0)}
+                style={{
+                  cursor: interactive ? 'pointer' : 'default',
+                  color: filled ? '#f59e0b' : '#cbd5e1',
+                  fontSize: size,
+                  transition: 'transform 0.15s'
+                }}
+              >
+                ★
+              </span>
+            );
+          })}
+        </div>
+      );
+    };
+
+    function App() {
+      const [view, setView] = useState('home'); // 'home', 'profession', 'provider', 'admin-login', 'admin-dashboard'
+      const [selectedProfId, setSelectedProfId] = useState(null);
+      const [selectedProvId, setSelectedProvId] = useState(null);
+
+      // Data
+      const [professions, setProfessions] = useState([]);
+      const [providers, setProviders] = useState([]);
+      const [stats, setStats] = useState(null);
+
+      // Search & Filters
+      const [searchQuery, setSearchQuery] = useState('');
+      const [filterProf, setFilterProf] = useState('');
+      const [filterArea, setFilterArea] = useState('');
+      const [sortBy, setSortBy] = useState('rating');
+
+      // Modals
+      const [reviewModalOpen, setReviewModalOpen] = useState(false);
+      const [reportModalOpen, setReportModalOpen] = useState(false);
+      const [activeProviderForModal, setActiveProviderForModal] = useState(null);
+
+      // Auth
+      const [token, setToken] = useState(localStorage.getItem('token') || null);
+      const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') || 'null'));
+
+      // Admin State
+      const [adminTab, setAdminTab] = useState('overview');
+      const [allAdminProviders, setAllAdminProviders] = useState([]);
+      const [allAdminProfessions, setAllAdminProfessions] = useState([]);
+      const [allReviews, setAllReviews] = useState([]);
+      const [allReports, setAllReports] = useState([]);
+      const [alertMsg, setAlertMsg] = useState('');
+
+      // Admin Modals
+      const [providerFormModal, setProviderFormModal] = useState({ open: false, isEdit: false, data: null });
+      const [professionFormModal, setProfessionFormModal] = useState({ open: false, isEdit: false, data: null });
+
+      const showAlert = (msg) => {
+        setAlertMsg(msg);
+        setTimeout(() => setAlertMsg(''), 4000);
+      };
+
+      const loadData = async () => {
+        try {
+          const [pRes, provRes, sRes, rRes] = await Promise.all([
+            fetch('/api/professions').then(r => r.json()),
+            fetch('/api/providers').then(r => r.json()),
+            fetch('/api/stats').then(r => r.json()),
+            fetch('/api/reviews?status=approved').then(r => r.json())
+          ]);
+          setProfessions(pRes.data || []);
+          setProviders(provRes.data || []);
+          setStats(sRes.data || null);
+          setAllReviews(rRes.data || []);
+        } catch (e) {
+          console.error(e);
+        }
+      };
+
+      const loadAdminData = async () => {
+        try {
+          const headers = { 'Authorization': `Bearer ${token || localStorage.getItem('token')}` };
+          const [pRes, profRes, rRes, repRes, sRes] = await Promise.all([
+            fetch('/api/providers?all=true').then(r => r.json()),
+            fetch('/api/professions').then(r => r.json()),
+            fetch('/api/reviews', { headers }).then(r => r.json()),
+            fetch('/api/reports', { headers }).then(r => r.json()),
+            fetch('/api/stats').then(r => r.json())
+          ]);
+          setAllAdminProviders(pRes.data || []);
+          setAllAdminProfessions(profRes.data || []);
+          setAllReviews(rRes.data || []);
+          setAllReports(repRes.data || []);
+          setStats(sRes.data || null);
+        } catch (e) {
+          console.error(e);
+        }
+      };
+
+      useEffect(() => {
+        loadData();
+      }, []);
+
+      const handleLogin = async (username, password) => {
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+          });
+          const data = await res.json();
+          if (data.success) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            setToken(data.token);
+            setUser(data.user);
+            setView('admin-dashboard');
+            loadAdminData();
+          } else {
+            alert(data.message || 'اسم المستخدم أو كلمة المرور غير صحيحة');
+          }
+        } catch (e) {
+          alert('فشل الاتصال بالخادم');
+        }
+      };
+
+      const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setToken(null);
+        setUser(null);
+        setView('home');
+      };
+
+      return (
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          {/* Sticky Navbar (Same exact design) */}
+          <div className="navbar">
+            <div className="container">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div onClick={() => setView('home')} style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}>
+                  <i className="fas fa-church"></i>
+                  <h1>katrina hub</h1>
+                </div>
+
+                <div className="navbar-links">
+                  <button onClick={() => setView('home')}>
+                    <i className="fas fa-home"></i>
+                    الرئيسية
+                  </button>
+                  <button onClick={() => { setSelectedProfId('all'); setView('profession'); }}>
+                    <i className="fas fa-briefcase"></i>
+                    المهن
+                  </button>
+                  {token ? (
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <button onClick={() => { setView('admin-dashboard'); loadAdminData(); }}>
+                        <i className="fas fa-user-shield"></i>
+                        لوحة التحكم
+                      </button>
+                      <button onClick={handleLogout} title="تسجيل الخروج">
+                        <i className="fas fa-sign-out-alt"></i>
+                      </button>
+                    </div>
+                  ) : (
+                    <button onClick={() => setView('admin-login')}>
+                      <i className="fas fa-user-shield"></i>
+                      دخول الإدارة
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Body */}
+          <main style={{ flex: 1, padding: '20px 0' }}>
+            {/* VIEW 1: HOME PAGE */}
+            {view === 'home' && (
+              <section className="professions-section">
+                <div className="container">
+                  <div className="section-header">
+                    <h2>المهن والخدمات</h2>
+                    <p>اختر المهنة المناسبة لاحتياجاتك</p>
+                  </div>
+
+                  {/* Search & Multi-Filter Card */}
+                  <div className="search-box-card">
+                    <input
+                      type="text"
+                      placeholder="ابحث باسم الفني أو التخصص..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="search-input"
+                    />
+                    <select
+                      value={filterProf}
+                      onChange={(e) => setFilterProf(e.target.value)}
+                      className="search-input"
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <option value="">كل المهن والتخصصات</option>
+                      {professions.map(p => <option key={p._id} value={p._id}>{p.name}</option>)}
+                    </select>
+                    <input
+                      type="text"
+                      placeholder="المنطقة (شبرا، المعادي...)"
+                      value={filterArea}
+                      onChange={(e) => setFilterArea(e.target.value)}
+                      className="search-input"
+                    />
+                    <button
+                      onClick={() => {
+                        setSelectedProfId(filterProf || 'all');
+                        setView('profession');
+                      }}
+                      className="btn-search"
+                    >
+                      <i className="fas fa-search"></i>
+                      بحث
+                    </button>
+                  </div>
+
+                  {/* Live Stats Bar */}
+                  {stats && (
+                    <div className="stats-bar">
+                      <div className="stat-item">
+                        <h4>{stats.totalProviders || 0}+</h4>
+                        <p>مقدم خدمة معتمد</p>
+                      </div>
+                      <div className="stat-item">
+                        <h4>{stats.totalProfessions || 0}</h4>
+                        <p>مهنة وتخصص مسجل</p>
+                      </div>
+                      <div className="stat-item">
+                        <h4>{stats.totalReviews || 0}</h4>
+                        <p>تقييم معتمد</p>
+                      </div>
+                      <div className="stat-item">
+                        <h4 style={{ color: '#f59e0b' }}>★ {stats.averageRating || '5.0'}</h4>
+                        <p>متوسط رضا العملاء</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Professions Grid */}
+                  <div className="professions-grid">
+                    {professions.map((prof) => (
+                      <div
+                        key={prof._id}
+                        className="profession-card"
+                        onClick={() => {
+                          setSelectedProfId(prof._id);
+                          setView('profession');
+                        }}
+                      >
+                        <div className="profession-icon">
+                          <i className={prof.icon || 'fas fa-tools'}></i>
+                        </div>
+                        <div className="profession-content">
+                          <h3>{prof.name}</h3>
+                          <p>عرض جميع مقدمي الخدمة</p>
+                        </div>
+                        <div className="profession-arrow">
+                          <i className="fas fa-arrow-left"></i>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Top Rated Section */}
+                  {providers.length > 0 && (
+                    <div style={{ marginTop: '70px' }}>
+                      <div className="section-header" style={{ marginBottom: '30px' }}>
+                        <h2 style={{ fontSize: '32px' }}>الأعلى تقييماً في المنصة</h2>
+                        <p style={{ fontSize: '16px' }}>أصحاب المهن الحاصلين على أعلى تقييمات</p>
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
+                        {providers.slice(0, 4).map((p) => (
+                          <div key={p._id} className="provider-card">
+                            <div>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                                <span style={{ fontSize: '12px', fontWeight: '800', background: '#eff6ff', color: '#1E3A8A', padding: '3px 10px', borderRadius: '15px' }}>
+                                  {p.profession?.name || 'خدمة'}
+                                </span>
+                                <span style={{ fontSize: '11px', color: '#047857', fontWeight: '700', background: '#ecfdf5', padding: '2px 8px', borderRadius: '12px' }}>متاح</span>
+                              </div>
+                              <h3 
+                                onClick={() => { setSelectedProvId(p._id); setView('provider'); }}
+                                style={{ margin: '0 0 6px', fontSize: '18px', fontWeight: '800', color: '#111', cursor: 'pointer' }}
+                              >
+                                {p.name}
+                              </h3>
+                              <p style={{ margin: '0 0 8px', color: '#64748b', fontSize: '13px' }}>
+                                <i className="fas fa-map-marker-alt" style={{ marginLeft: '5px', color: '#1E3A8A' }}></i>
+                                {p.area}
+                              </p>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <StarRating rating={p.avgRating} />
+                                <span style={{ fontSize: '13px', fontWeight: '800' }}>{(p.avgRating || 0).toFixed(1)}</span>
+                                <span style={{ fontSize: '11px', color: '#94a3b8' }}>({p.reviewsCount || 0})</span>
+                              </div>
+                            </div>
+                            <div style={{ display: 'flex', gap: '8px', paddingTop: '12px', borderTop: '1px solid #f1f5f9' }}>
+                              <a href={`tel:${p.phone}`} className="btn-call">
+                                <i className="fas fa-phone-alt"></i> اتصال
+                              </a>
+                              {p.whatsapp && (
+                                <a href={formatWhatsapp(p.whatsapp)} target="_blank" className="btn-whatsapp">
+                                  <i className="fab fa-whatsapp"></i> واتساب
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+
+            {/* VIEW 2: PROFESSION DETAIL */}
+            {view === 'profession' && (() => {
+              const currentProf = professions.find(p => p._id === selectedProfId) || { name: selectedProfId === 'all' ? 'جميع الخدمات' : 'المهنة' };
+              const filteredList = providers
+                .filter(p => {
+                  if (selectedProfId !== 'all' && p.profession?._id !== selectedProfId && p.profession !== selectedProfId) return false;
+                  if (searchQuery && !p.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+                  if (filterArea && !p.area.toLowerCase().includes(filterArea.toLowerCase())) return false;
+                  return true;
+                })
+                .sort((a,b) => sortBy === 'rating' ? b.avgRating - a.avgRating : b.reviewsCount - a.reviewsCount);
+
+              return (
+                <div className="container" style={{ padding: '30px 20px' }}>
+                  <button 
+                    onClick={() => setView('home')} 
+                    style={{ background: 'white', border: '1px solid #ddd', padding: '8px 18px', borderRadius: '12px', fontWeight: '700', cursor: 'pointer', marginBottom: '25px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'Cairo' }}
+                  >
+                    <i className="fas fa-arrow-right"></i>
+                    العودة للرئيسية
+                  </button>
+
+                  <div className="glass-panel" style={{ marginBottom: '25px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                      <div className="profession-icon" style={{ width: '70px', height: '70px', fontSize: '28px' }}>
+                        <i className={currentProf.icon || 'fas fa-tools'}></i>
+                      </div>
+                      <div>
+                        <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#1E3A8A', margin: 0 }}>
+                          {currentProf.name}
+                        </h2>
+                        <p style={{ margin: '5px 0 0', color: '#555', fontSize: '15px' }}>
+                          مقدمو الخدمات المتاحين: ({filteredList.length}) فني معتمد
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Filter Toolbar */}
+                  <div className="glass-panel" style={{ padding: '16px 20px', marginBottom: '30px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px' }}>
+                    <input
+                      type="text"
+                      placeholder="بحث بالاسم..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="search-input"
+                    />
+                    <input
+                      type="text"
+                      placeholder="تصفية بالمنطقة..."
+                      value={filterArea}
+                      onChange={(e) => setFilterArea(e.target.value)}
+                      className="search-input"
+                    />
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className="search-input"
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <option value="rating">ترتيب: الأعلى تقييماً</option>
+                      <option value="reviews">ترتيب: الأكثر تقييمات</option>
+                    </select>
+                  </div>
+
+                  {filteredList.length > 0 ? (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))', gap: '24px' }}>
+                      {filteredList.map((p) => (
+                        <div key={p._id} className="provider-card">
+                          <div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                              <h3 
+                                onClick={() => { setSelectedProvId(p._id); setView('provider'); }}
+                                style={{ margin: 0, fontSize: '19px', fontWeight: '800', color: '#111', cursor: 'pointer' }}
+                              >
+                                {p.name}
+                              </h3>
+                              <span style={{ background: '#ecfdf5', color: '#047857', padding: '3px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '700' }}>متاح</span>
+                            </div>
+                            <p style={{ margin: '0 0 10px', color: '#666', fontSize: '14px' }}>
+                              <i className="fas fa-map-marker-alt" style={{ marginLeft: '6px', color: '#1E3A8A' }}></i>
+                              {p.area}
+                            </p>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid #eee', paddingTop: '10px' }}>
+                              <StarRating rating={p.avgRating} />
+                              <span style={{ color: '#f59e0b', fontWeight: '800' }}>★ {(p.avgRating || 0).toFixed(1)}</span>
+                              <span style={{ color: '#888', fontSize: '13px' }}>({p.reviewsCount || 0} تقييم)</span>
+                            </div>
+                          </div>
+
+                          <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+                            <a href={`tel:${p.phone}`} className="btn-call">
+                              <i className="fas fa-phone-alt"></i> اتصال
+                            </a>
+                            {p.whatsapp && (
+                              <a href={formatWhatsapp(p.whatsapp)} target="_blank" className="btn-whatsapp">
+                                <i className="fab fa-whatsapp"></i> واتساب
+                              </a>
+                            )}
+                            <button
+                              onClick={() => { setSelectedProvId(p._id); setView('provider'); }}
+                              style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '10px 14px', cursor: 'pointer', color: '#1E3A8A' }}
+                              title="عرض التقييمات والملف الكامل"
+                            >
+                              <i className="fas fa-arrow-left"></i>
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="glass-panel" style={{ textAlign: 'center', padding: '60px 20px' }}>
+                      <i className="fas fa-info-circle" style={{ fontSize: '48px', color: '#1E3A8A', marginBottom: '15px' }}></i>
+                      <h3 style={{ fontSize: '22px', fontWeight: '800', color: '#111', margin: '0 0 10px' }}>
+                        لا يوجد مقدمو خدمات مسجلين حالياً
+                      </h3>
+                      <p style={{ color: '#666', fontSize: '15px', maxWidth: '500px', margin: 'auto' }}>
+                        يمكنك إضافة مقدمي خدمات حقيقيين لهذا القسم بسهولة من خلال لوحة التحكم الخاصة بك.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* VIEW 3: PROVIDER DETAIL & REVIEWS */}
+            {view === 'provider' && (() => {
+              const prov = providers.find(p => p._id === selectedProvId) || allAdminProviders.find(p => p._id === selectedProvId) || providers[0];
+              if (!prov) return null;
+
+              return (
+                <div className="container" style={{ maxWidth: '900px', padding: '30px 20px' }}>
+                  <button onClick={() => setView('home')} style={{ background: 'white', border: '1px solid #ddd', padding: '8px 18px', borderRadius: '12px', fontWeight: '700', cursor: 'pointer', marginBottom: '25px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'Cairo' }}>
+                    <i className="fas fa-arrow-right"></i> العودة للقائمة الرئيسية
+                  </button>
+
+                  {/* Profile Header */}
+                  <div className="glass-panel" style={{ marginBottom: '30px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid #eee', paddingBottom: '20px', marginBottom: '20px' }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <h1 style={{ fontSize: '28px', fontWeight: '900', color: '#1E3A8A', margin: 0 }}>{prov.name}</h1>
+                          <span style={{ background: '#ecfdf5', color: '#047857', padding: '3px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '800' }}>معتمد</span>
+                        </div>
+                        <p style={{ margin: '8px 0 0', color: '#555', fontSize: '15px' }}>
+                          📍 المنطقة: {prov.area} • التخصص: {prov.profession?.name || 'خدمة عامة'}
+                        </p>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px' }}>
+                          <StarRating rating={prov.avgRating} size="20px" />
+                          <span style={{ fontWeight: '800', fontSize: '16px', color: '#f59e0b' }}>{(prov.avgRating || 0).toFixed(1)}</span>
+                          <span style={{ color: '#888', fontSize: '13px' }}>({prov.reviewsCount || 0} تقييم معتمد)</span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => { setActiveProviderForModal(prov); setReportModalOpen(true); }}
+                        style={{ background: '#fff1f2', border: '1px solid #fecdd3', color: '#e11d48', padding: '8px 14px', borderRadius: '12px', fontWeight: '700', fontSize: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'Cairo' }}
+                      >
+                        <i className="fas fa-shield-alt"></i> إبلاغ عن مشكلة
+                      </button>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+                      <a href={`tel:${prov.phone}`} className="btn-call" style={{ padding: '14px', fontSize: '16px' }}>
+                        <i className="fas fa-phone-alt"></i> اتصال هاتفي ({prov.phone})
+                      </a>
+                      {prov.whatsapp && (
+                        <a href={formatWhatsapp(prov.whatsapp)} target="_blank" className="btn-whatsapp" style={{ padding: '14px', fontSize: '16px' }}>
+                          <i className="fab fa-whatsapp"></i> محادثة واتساب مباشرة
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Customer Reviews & Add Review */}
+                  <div className="glass-panel">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
+                      <div>
+                        <h2 style={{ fontSize: '22px', fontWeight: '900', color: '#1E3A8A', margin: 0 }}>آراء وتقييمات العملاء</h2>
+                        <p style={{ margin: '4px 0 0', color: '#666', fontSize: '13px' }}>تجارب العملاء مع هذا الفني</p>
+                      </div>
+                      <button
+                        onClick={() => { setActiveProviderForModal(prov); setReviewModalOpen(true); }}
+                        style={{ background: 'linear-gradient(135deg, #1E3A8A, #2563EB)', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '12px', fontWeight: '800', fontSize: '14px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'Cairo' }}
+                      >
+                        <i className="fas fa-star"></i> أضف تقييمك
+                      </button>
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      {allReviews.filter(r => (r.provider?._id === prov._id || r.provider === prov._id) && r.isApproved).length > 0 ? (
+                        allReviews.filter(r => (r.provider?._id === prov._id || r.provider === prov._id) && r.isApproved).map((r) => (
+                          <div key={r._id} style={{ background: '#f8fafc', padding: '16px 20px', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                              <span style={{ fontWeight: '800', fontSize: '14px', color: '#111' }}>{r.userName}</span>
+                              <StarRating rating={r.rating} size="14px" />
+                            </div>
+                            <p style={{ margin: 0, color: '#475569', fontSize: '13px' }}>"{r.comment}"</p>
+                          </div>
+                        ))
+                      ) : (
+                        <div style={{ textAlign: 'center', padding: '30px', color: '#64748b' }}>
+                          <p style={{ fontSize: '14px', fontWeight: '700' }}>لا توجد تقييمات منشورة لهذا الفني حتى الآن.</p>
+                          <p style={{ fontSize: '12px' }}>كن أول من يشارك تجربته مع هذه الخدمة!</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* VIEW 4: ADMIN LOGIN (Clean empty inputs) */}
+            {view === 'admin-login' && (
+              <div className="container" style={{ maxWidth: '460px', padding: '60px 20px' }}>
+                <div className="glass-panel" style={{ textAlign: 'center' }}>
+                  <div className="profession-icon" style={{ margin: '0 auto 20px', width: '64px', height: '64px' }}>
+                    <i className="fas fa-user-shield"></i>
+                  </div>
+                  <h2 style={{ fontSize: '26px', fontWeight: '900', color: '#1E3A8A', marginBottom: '6px' }}>
+                    تسجيل دخول الإدارة
+                  </h2>
+                  <p style={{ fontSize: '14px', color: '#666', marginBottom: '25px' }}>
+                    katrina hub - لوحة تحكم المسؤول
+                  </p>
+
+                  <form onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin(e.target.username.value, e.target.password.value);
+                  }} style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'right' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '6px' }}>اسم المستخدم:</label>
+                      <input 
+                        type="text" 
+                        name="username" 
+                        placeholder="أدخل اسم المستخدم" 
+                        required 
+                        style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid #ccc', fontFamily: 'Cairo', fontSize: '14px' }} 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '6px' }}>كلمة المرور:</label>
+                      <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="••••••••" 
+                        required 
+                        style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid #ccc', fontFamily: 'Cairo', fontSize: '14px' }} 
+                      />
+                    </div>
+                    <button 
+                      type="submit" 
+                      style={{ 
+                        background: 'linear-gradient(180deg, #1E3A8A, #243F9E)', 
+                        color: 'white', 
+                        padding: '12px', 
+                        borderRadius: '12px', 
+                        border: 'none', 
+                        fontWeight: '800', 
+                        fontSize: '16px', 
+                        cursor: 'pointer', 
+                        marginTop: '10px', 
+                        fontFamily: 'Cairo' 
+                      }}
+                    >
+                      تسجيل الدخول
+                    </button>
+                  </form>
+                </div>
+              </div>
+            )}
+
+            {/* VIEW 5: COMPLETE ADMIN DASHBOARD (5 Tabs) */}
+            {view === 'admin-dashboard' && (
+              <div className="container" style={{ padding: '30px 20px' }}>
+                <div className="glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
+                  <div>
+                    <h2 style={{ fontSize: '28px', fontWeight: '900', color: '#1E3A8A', margin: 0 }}>
+                      لوحة التحكم والإدارة - katrina hub
+                    </h2>
+                    <p style={{ margin: '5px 0 0', color: '#666', fontSize: '14px' }}>
+                      مرحباً {user?.username} • إدارة المهن، مقدمي الخدمات، التقييمات والبلاغات
+                    </p>
+                  </div>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <button 
+                      onClick={() => setProviderFormModal({ open: true, isEdit: false, data: null })}
+                      style={{ background: 'linear-gradient(135deg, #1E3A8A, #2563EB)', color: 'white', padding: '10px 20px', borderRadius: '12px', border: 'none', fontWeight: '800', cursor: 'pointer', fontFamily: 'Cairo', display: 'flex', alignItems: 'center', gap: '8px' }}
+                    >
+                      <i className="fas fa-user-plus"></i> إضافة فني جديد
+                    </button>
+                    <button 
+                      onClick={loadAdminData}
+                      style={{ background: 'white', border: '1px solid #ddd', padding: '10px 16px', borderRadius: '12px', fontWeight: '700', cursor: 'pointer', fontFamily: 'Cairo' }}
+                    >
+                      <i className="fas fa-sync-alt"></i> تحديث
+                    </button>
+                  </div>
+                </div>
+
+                {alertMsg && (
+                  <div style={{ background: '#ecfdf5', color: '#047857', padding: '14px 20px', borderRadius: '12px', marginBottom: '20px', fontWeight: '700', border: '1px solid #a7f3d0' }}>
+                    {alertMsg}
+                  </div>
+                )}
+
+                {/* Dashboard Tabs */}
+                <div style={{ display: 'flex', gap: '10px', background: 'rgba(255,255,255,0.7)', padding: '8px', borderRadius: '16px', marginBottom: '25px', overflowX: 'auto' }}>
+                  {[
+                    { id: 'overview', label: 'نظرة عامة', icon: 'fas fa-chart-pie' },
+                    { id: 'providers', label: `مقدمو الخدمات (${allAdminProviders.length})`, icon: 'fas fa-users' },
+                    { id: 'professions', label: `المهن (${allAdminProfessions.length || professions.length})`, icon: 'fas fa-briefcase' },
+                    { id: 'reviews', label: `التقييمات (${allReviews.filter(r => !r.isApproved).length} معلق)`, icon: 'fas fa-star' },
+                    { id: 'reports', label: `البلاغات (${allReports.filter(r => !r.isResolved).length} مفتوح)`, icon: 'fas fa-shield-alt' }
+                  ].map((t) => (
+                    <button
+                      key={t.id}
+                      onClick={() => setAdminTab(t.id)}
+                      style={{
+                        padding: '10px 20px',
+                        borderRadius: '12px',
+                        border: 'none',
+                        background: adminTab === t.id ? '#1E3A8A' : 'transparent',
+                        color: adminTab === t.id ? 'white' : '#475569',
+                        fontWeight: '800',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        fontFamily: 'Cairo',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      <i className={t.icon}></i>
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* TAB 1: OVERVIEW */}
+                {adminTab === 'overview' && (
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
+                    <div className="glass-panel" style={{ textAlign: 'center' }}>
+                      <h3 style={{ fontSize: '36px', fontWeight: '900', color: '#1E3A8A', margin: 0 }}>{allAdminProviders.length}</h3>
+                      <p style={{ color: '#64748b', fontWeight: '700', fontSize: '14px', marginTop: '6px' }}>إجمالي مقدمي الخدمات</p>
+                    </div>
+                    <div className="glass-panel" style={{ textAlign: 'center' }}>
+                      <h3 style={{ fontSize: '36px', fontWeight: '900', color: '#1E3A8A', margin: 0 }}>{allAdminProfessions.length || professions.length}</h3>
+                      <p style={{ color: '#64748b', fontWeight: '700', fontSize: '14px', marginTop: '6px' }}>المهن والتخصصات</p>
+                    </div>
+                    <div className="glass-panel" style={{ textAlign: 'center' }}>
+                      <h3 style={{ fontSize: '36px', fontWeight: '900', color: '#f59e0b', margin: 0 }}>{allReviews.filter(r => !r.isApproved).length}</h3>
+                      <p style={{ color: '#64748b', fontWeight: '700', fontSize: '14px', marginTop: '6px' }}>تقييمات معلقة للاعتماد</p>
+                    </div>
+                    <div className="glass-panel" style={{ textAlign: 'center' }}>
+                      <h3 style={{ fontSize: '36px', fontWeight: '900', color: '#e11d48', margin: 0 }}>{allReports.filter(r => !r.isResolved).length}</h3>
+                      <p style={{ color: '#64748b', fontWeight: '700', fontSize: '14px', marginTop: '6px' }}>شكاوى وبلاغات مفتوحة</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 2: PROVIDERS CRUD */}
+                {adminTab === 'providers' && (
+                  <div className="glass-panel">
+                    <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '20px', color: '#1E3A8A' }}>
+                      إدارة مقدمي الخدمات
+                    </h3>
+                    {allAdminProviders.length > 0 ? (
+                      <div style={{ overflowX: 'auto' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'right', fontSize: '14px' }}>
+                          <thead>
+                            <tr style={{ background: '#f1f5f9', borderBottom: '2px solid #e2e8f0' }}>
+                              <th style={{ padding: '12px' }}>الاسم</th>
+                              <th style={{ padding: '12px' }}>المهنة</th>
+                              <th style={{ padding: '12px' }}>المنطقة</th>
+                              <th style={{ padding: '12px' }}>الهاتف</th>
+                              <th style={{ padding: '12px' }}>واتساب</th>
+                              <th style={{ padding: '12px' }}>الحالة</th>
+                              <th style={{ padding: '12px', textAlign: 'center' }}>إجراءات</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {allAdminProviders.map((p) => (
+                              <tr key={p._id} style={{ borderBottom: '1px solid #eee' }}>
+                                <td style={{ padding: '12px', fontWeight: '800' }}>{p.name}</td>
+                                <td style={{ padding: '12px' }}>{p.profession?.name || '—'}</td>
+                                <td style={{ padding: '12px' }}>{p.area}</td>
+                                <td style={{ padding: '12px' }}>{p.phone}</td>
+                                <td style={{ padding: '12px' }}>{p.whatsapp || '—'}</td>
+                                <td style={{ padding: '12px' }}>
+                                  <span style={{ padding: '3px 10px', borderRadius: '12px', fontSize: '12px', fontWeight: '800', background: p.isActive ? '#ecfdf5' : '#f1f5f9', color: p.isActive ? '#047857' : '#64748b' }}>
+                                    {p.isActive ? 'نشط' : 'معطل'}
+                                  </span>
+                                </td>
+                                <td style={{ padding: '12px', textAlign: 'center' }}>
+                                  <button
+                                    onClick={() => setProviderFormModal({ open: true, isEdit: true, data: p })}
+                                    style={{ background: '#eff6ff', color: '#1E3A8A', border: 'none', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', marginLeft: '6px', fontFamily: 'Cairo' }}
+                                  >
+                                    تعديل
+                                  </button>
+                                  <button
+                                    onClick={async () => {
+                                      if (confirm('حذف مقدم الخدمة؟')) {
+                                        await fetch(`/api/providers/${p._id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+                                        showAlert('تم الحذف بنجاح');
+                                        loadAdminData();
+                                        loadData();
+                                      }
+                                    }}
+                                    style={{ background: '#fee2e2', color: '#b91c1c', border: 'none', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontFamily: 'Cairo' }}
+                                  >
+                                    حذف
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : (
+                      <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+                        <p style={{ fontWeight: '700' }}>لا يوجد مقدمو خدمات مسجلين حتى الآن.</p>
+                        <p style={{ fontSize: '13px' }}>اضغط على زر "إضافة فني جديد" في الأعلى لإدراج أصحاب المهن الحقيقيين.</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* TAB 3: PROFESSIONS CRUD */}
+                {adminTab === 'professions' && (
+                  <div className="glass-panel">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                      <h3 style={{ fontSize: '18px', fontWeight: '800', margin: 0, color: '#1E3A8A' }}>قائمة المهن</h3>
+                      <button
+                        onClick={() => setProfessionFormModal({ open: true, isEdit: false, data: null })}
+                        style={{ background: '#1E3A8A', color: 'white', padding: '8px 18px', borderRadius: '10px', border: 'none', fontWeight: '700', cursor: 'pointer', fontFamily: 'Cairo' }}
+                      >
+                        + إضافة مهنة
+                      </button>
+                    </div>
+
+                    <div style={{ overflowX: 'auto' }}>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'right', fontSize: '14px' }}>
+                        <thead>
+                          <tr style={{ background: '#f1f5f9', borderBottom: '2px solid #e2e8f0' }}>
+                            <th style={{ padding: '12px' }}>الأيقونة</th>
+                            <th style={{ padding: '12px' }}>اسم المهنة</th>
+                            <th style={{ padding: '12px' }}>الوصف</th>
+                            <th style={{ padding: '12px', textAlign: 'center' }}>إجراءات</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {(allAdminProfessions.length > 0 ? allAdminProfessions : professions).map((prof) => (
+                            <tr key={prof._id} style={{ borderBottom: '1px solid #eee' }}>
+                              <td style={{ padding: '12px' }}>
+                                <i className={prof.icon || 'fas fa-tools'} style={{ color: '#1E3A8A', fontSize: '18px' }}></i>
+                              </td>
+                              <td style={{ padding: '12px', fontWeight: '800' }}>{prof.name}</td>
+                              <td style={{ padding: '12px', color: '#64748b' }}>{prof.description || '—'}</td>
+                              <td style={{ padding: '12px', textAlign: 'center' }}>
+                                <button
+                                  onClick={() => setProfessionFormModal({ open: true, isEdit: true, data: prof })}
+                                  style={{ background: '#eff6ff', color: '#1E3A8A', border: 'none', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', marginLeft: '6px', fontFamily: 'Cairo' }}
+                                >
+                                  تعديل
+                                </button>
+                                <button
+                                  onClick={async () => {
+                                    if (confirm('حذف هذه المهنة؟')) {
+                                      const res = await fetch(`/api/professions/${prof._id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+                                      const d = await res.json();
+                                      if (d.success) {
+                                        showAlert('تم حذف المهنة بنجاح');
+                                        loadAdminData();
+                                        loadData();
+                                      } else {
+                                        alert(d.message || 'فشل حذف المهنة');
+                                      }
+                                    }
+                                  }}
+                                  style={{ background: '#fee2e2', color: '#b91c1c', border: 'none', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontFamily: 'Cairo' }}
+                                >
+                                  حذف
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 4: REVIEWS MODERATION */}
+                {adminTab === 'reviews' && (
+                  <div className="glass-panel">
+                    <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '20px', color: '#1E3A8A' }}>
+                      مراجعة واعتماد التقييمات
+                    </h3>
+                    {allReviews.length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        {allReviews.map((r) => (
+                          <div key={r._id} style={{ background: r.isApproved ? '#ffffff' : '#fffbeb', border: `1px solid ${r.isApproved ? '#e2e8f0' : '#fde68a'}`, padding: '16px 20px', borderRadius: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+                                <span style={{ fontWeight: '800', fontSize: '14px' }}>{r.userName}</span>
+                                <span style={{ color: '#64748b', fontSize: '12px' }}>عن: {r.provider?.name || 'مقدم خدمة'}</span>
+                                <StarRating rating={r.rating} size="14px" />
+                              </div>
+                              <p style={{ margin: 0, color: '#334155', fontSize: '13px' }}>"{r.comment}"</p>
+                            </div>
+                            <div style={{ display: 'flex', gap: '8px' }}>
+                              {!r.isApproved && (
+                                <button
+                                  onClick={async () => {
+                                    await fetch(`/api/reviews/${r._id}/approve`, { method: 'PATCH', headers: { 'Authorization': `Bearer ${token}` } });
+                                    showAlert('تم اعتماد التقييم بنجاح');
+                                    loadAdminData();
+                                    loadData();
+                                  }}
+                                  style={{ background: '#10b981', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer', fontFamily: 'Cairo' }}
+                                >
+                                  اعتماد
+                                </button>
+                              )}
+                              <button
+                                onClick={async () => {
+                                  if (confirm('حذف التقييم؟')) {
+                                    await fetch(`/api/reviews/${r._id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+                                    showAlert('تم حذف التقييم');
+                                    loadAdminData();
+                                    loadData();
+                                  }
+                                }}
+                                style={{ background: '#fee2e2', color: '#b91c1c', border: 'none', padding: '8px 16px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer', fontFamily: 'Cairo' }}
+                              >
+                                حذف
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p style={{ textAlign: 'center', color: '#666', padding: '30px' }}>لا توجد تقييمات مسجلة حالياً.</p>
+                    )}
+                  </div>
+                )}
+
+                {/* TAB 5: REPORTS MODERATION */}
+                {adminTab === 'reports' && (
+                  <div className="glass-panel">
+                    <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '20px', color: '#1E3A8A' }}>
+                      البلاغات والشكاوى
+                    </h3>
+                    {allReports.length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        {allReports.map((rep) => (
+                          <div key={rep._id} style={{ background: rep.isResolved ? '#f8fafc' : '#fff1f2', border: `1px solid ${rep.isResolved ? '#e2e8f0' : '#fecdd3'}`, padding: '16px 20px', borderRadius: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+                                <span style={{ fontWeight: '800', fontSize: '14px', color: '#e11d48' }}>المُبلّغ: {rep.userName}</span>
+                                <span style={{ color: '#64748b', fontSize: '12px' }}>ضد: {rep.provider?.name || 'مقدم خدمة'}</span>
+                              </div>
+                              <p style={{ margin: 0, color: '#334155', fontSize: '13px' }}>"{rep.message}"</p>
+                            </div>
+                            <div style={{ display: 'flex', gap: '8px' }}>
+                              <button
+                                onClick={async () => {
+                                  await fetch(`/api/reports/${rep._id}/resolve`, { method: 'PATCH', headers: { 'Authorization': `Bearer ${token}` } });
+                                  showAlert('تم تغيير حالة البلاغ');
+                                  loadAdminData();
+                                }}
+                                style={{ background: rep.isResolved ? '#e2e8f0' : '#10b981', color: rep.isResolved ? '#475569' : 'white', border: 'none', padding: '8px 16px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer', fontFamily: 'Cairo' }}
+                              >
+                                {rep.isResolved ? 'إعادة فتح' : 'تعيين كمحلول'}
+                              </button>
+                              <button
+                                onClick={async () => {
+                                  if (confirm('حذف البلاغ؟')) {
+                                    await fetch(`/api/reports/${rep._id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+                                    showAlert('تم حذف البلاغ');
+                                    loadAdminData();
+                                  }
+                                }}
+                                style={{ background: '#fee2e2', color: '#b91c1c', border: 'none', padding: '8px 16px', borderRadius: '10px', fontWeight: '700', cursor: 'pointer', fontFamily: 'Cairo' }}
+                              >
+                                حذف
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p style={{ textAlign: 'center', color: '#666', padding: '30px' }}>لا توجد بلاغات مسجلة حالياً.</p>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </main>
+
+          {/* Modal: Add/Edit Provider */}
+          {providerFormModal.open && (
+            <div className="modal-overlay">
+              <div className="glass-panel" style={{ maxWidth: '520px', width: '100%', padding: '30px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+                  <h3 style={{ margin: 0, fontSize: '20px', fontWeight: '900', color: '#1E3A8A' }}>
+                    {providerFormModal.isEdit ? 'تعديل بيانات مقدم الخدمة' : 'إضافة مقدم خدمة جديد'}
+                  </h3>
+                  <button onClick={() => setProviderFormModal({ open: false, isEdit: false, data: null })} style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer', color: '#666' }}>✕</button>
+                </div>
+
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.target;
+                  const payload = {
+                    name: form.name.value,
+                    phone: form.phone.value,
+                    whatsapp: form.whatsapp.value,
+                    area: form.area.value,
+                    profession: form.profession.value,
+                    isActive: form.isActive.checked
+                  };
+                  try {
+                    const url = providerFormModal.isEdit ? `/api/providers/${providerFormModal.data._id}` : '/api/providers';
+                    const method = providerFormModal.isEdit ? 'PUT' : 'POST';
+                    const res = await fetch(url, {
+                      method,
+                      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                      body: JSON.stringify(payload)
+                    });
+                    const d = await res.json();
+                    if (d.success) {
+                      showAlert(providerFormModal.isEdit ? 'تم التعديل بنجاح' : 'تم الإضافة بنجاح');
+                      setProviderFormModal({ open: false, isEdit: false, data: null });
+                      loadAdminData();
+                      loadData();
+                    } else {
+                      alert(d.message || 'فشل الحفظ');
+                    }
+                  } catch(err) {
+                    alert('حدث خطأ');
+                  }
+                }} style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'right', fontSize: '13px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>الاسم الكامل:</label>
+                    <input type="text" name="name" defaultValue={providerFormModal.data?.name || ''} required style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }} />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>رقم الهاتف:</label>
+                      <input type="text" name="phone" defaultValue={providerFormModal.data?.phone || ''} required style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }} />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>رقم واتساب:</label>
+                      <input type="text" name="whatsapp" defaultValue={providerFormModal.data?.whatsapp || ''} style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }} />
+                    </div>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>المنطقة / المحافظة:</label>
+                      <input type="text" name="area" defaultValue={providerFormModal.data?.area || ''} required style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }} />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>المهنة أو التخصص:</label>
+                      <select name="profession" defaultValue={providerFormModal.data?.profession?._id || providerFormModal.data?.profession || ''} required style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }}>
+                        <option value="">اختر المهنة...</option>
+                        {professions.map(prof => (
+                          <option key={prof._id} value={prof._id}>{prof.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <input type="checkbox" name="isActive" id="isActive" defaultChecked={providerFormModal.data ? providerFormModal.data.isActive : true} />
+                    <label htmlFor="isActive" style={{ fontWeight: '700' }}>حساب نشط ومعروض في الدليل</label>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
+                    <button type="button" onClick={() => setProviderFormModal({ open: false, isEdit: false, data: null })} style={{ padding: '10px 18px', borderRadius: '10px', border: '1px solid #ccc', background: 'white', cursor: 'pointer', fontFamily: 'Cairo', fontWeight: '700' }}>
+                      إلغاء
+                    </button>
+                    <button type="submit" style={{ padding: '10px 22px', borderRadius: '10px', border: 'none', background: '#1E3A8A', color: 'white', cursor: 'pointer', fontFamily: 'Cairo', fontWeight: '800' }}>
+                      حفظ البيانات
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Modal: Add/Edit Profession */}
+          {professionFormModal.open && (
+            <div className="modal-overlay">
+              <div className="glass-panel" style={{ maxWidth: '460px', width: '100%', padding: '30px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+                  <h3 style={{ margin: 0, fontSize: '20px', fontWeight: '900', color: '#1E3A8A' }}>
+                    {professionFormModal.isEdit ? 'تعديل المهنة' : 'إضافة مهنة جديدة'}
+                  </h3>
+                  <button onClick={() => setProfessionFormModal({ open: false, isEdit: false, data: null })} style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer', color: '#666' }}>✕</button>
+                </div>
+
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.target;
+                  const payload = {
+                    name: form.name.value,
+                    icon: form.icon.value,
+                    description: form.description.value
+                  };
+                  try {
+                    const url = professionFormModal.isEdit ? `/api/professions/${professionFormModal.data._id}` : '/api/professions';
+                    const method = professionFormModal.isEdit ? 'PUT' : 'POST';
+                    const res = await fetch(url, {
+                      method,
+                      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                      body: JSON.stringify(payload)
+                    });
+                    const d = await res.json();
+                    if (d.success) {
+                      showAlert(professionFormModal.isEdit ? 'تم التعديل بنجاح' : 'تم إضافة المهنة بنجاح');
+                      setProfessionFormModal({ open: false, isEdit: false, data: null });
+                      loadAdminData();
+                      loadData();
+                    } else {
+                      alert(d.message || 'فشل الحفظ');
+                    }
+                  } catch(err) {
+                    alert('حدث خطأ');
+                  }
+                }} style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'right', fontSize: '13px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>اسم المهنة:</label>
+                    <input type="text" name="name" defaultValue={professionFormModal.data?.name || ''} required style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>أيقونة FontAwesome:</label>
+                    <select name="icon" defaultValue={professionFormModal.data?.icon || 'fas fa-tools'} style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }}>
+                      <option value="fas fa-faucet">سباكة (fas fa-faucet)</option>
+                      <option value="fas fa-bolt">كهرباء (fas fa-bolt)</option>
+                      <option value="fas fa-hammer">نجارة (fas fa-hammer)</option>
+                      <option value="fas fa-paint-roller">نقاشة ودهانات (fas fa-paint-roller)</option>
+                      <option value="fas fa-snowflake">تكييف وتبريد (fas fa-snowflake)</option>
+                      <option value="fas fa-tools">صيانة أجهزة (fas fa-tools)</option>
+                      <option value="fas fa-heartbeat">صحة وأطباء (fas fa-heartbeat)</option>
+                      <option value="fas fa-car">سيارات (fas fa-car)</option>
+                      <option value="fas fa-truck">نقل وشحن (fas fa-truck)</option>
+                      <option value="fas fa-graduation-cap">تعليم وتدريس (fas fa-graduation-cap)</option>
+                      <option value="fas fa-industry">حدادة وألوميتال (fas fa-industry)</option>
+                      <option value="fas fa-scale-balanced">محاماة وقانون (fas fa-scale-balanced)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>الوصف:</label>
+                    <textarea name="description" rows="2" defaultValue={professionFormModal.data?.description || ''} style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo', resize: 'none' }}></textarea>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
+                    <button type="button" onClick={() => setProfessionFormModal({ open: false, isEdit: false, data: null })} style={{ padding: '10px 18px', borderRadius: '10px', border: '1px solid #ccc', background: 'white', cursor: 'pointer', fontFamily: 'Cairo', fontWeight: '700' }}>
+                      إلغاء
+                    </button>
+                    <button type="submit" style={{ padding: '10px 22px', borderRadius: '10px', border: 'none', background: '#1E3A8A', color: 'white', cursor: 'pointer', fontFamily: 'Cairo', fontWeight: '800' }}>
+                      حفظ المهنة
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Modal: Add Review */}
+          {reviewModalOpen && activeProviderForModal && (
+            <div className="modal-overlay">
+              <div className="glass-panel" style={{ maxWidth: '440px', width: '100%', padding: '25px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '900', color: '#1E3A8A' }}>
+                    تقييم: {activeProviderForModal.name}
+                  </h3>
+                  <button onClick={() => setReviewModalOpen(false)} style={{ background: 'none', border: 'none', fontSize: '18px', cursor: 'pointer', color: '#666' }}>✕</button>
+                </div>
+
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.target;
+                  try {
+                    const res = await fetch('/api/reviews', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        providerId: activeProviderForModal._id,
+                        userName: form.userName.value,
+                        rating: Number(form.rating.value),
+                        comment: form.comment.value
+                      })
+                    });
+                    const d = await res.json();
+                    alert(d.message || 'تم إرسال التقييم وسيظهر بعد مراجعة الإدارة');
+                    setReviewModalOpen(false);
+                    loadData();
+                  } catch(err) {
+                    alert('فشل إرسال التقييم');
+                  }
+                }} style={{ display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'right', fontSize: '13px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>التقييم:</label>
+                    <select name="rating" defaultValue="5" style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }}>
+                      <option value="5">⭐⭐⭐⭐⭐ 5 نجوم (ممتاز)</option>
+                      <option value="4">⭐⭐⭐⭐ 4 نجوم (جيد جداً)</option>
+                      <option value="3">⭐⭐⭐ 3 نجوم (جيد)</option>
+                      <option value="2">⭐⭐ 2 نجوم (مقبول)</option>
+                      <option value="1">⭐ 1 نجمة (ضعيف)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>اسمك:</label>
+                    <input type="text" name="userName" required placeholder="اسمك الكريم" style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>رأيك وتجربتك:</label>
+                    <textarea name="comment" rows="3" required placeholder="اكتب ملاحظاتك عن العمل والمواعيد..." style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo', resize: 'none' }}></textarea>
+                  </div>
+                  <button type="submit" style={{ padding: '12px', borderRadius: '10px', border: 'none', background: 'linear-gradient(135deg, #1E3A8A, #2563EB)', color: 'white', fontWeight: '800', cursor: 'pointer', fontFamily: 'Cairo', marginTop: '6px' }}>
+                    إرسال التقييم
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Modal: Report */}
+          {reportModalOpen && activeProviderForModal && (
+            <div className="modal-overlay">
+              <div className="glass-panel" style={{ maxWidth: '440px', width: '100%', padding: '25px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '900', color: '#e11d48' }}>
+                    إبلاغ عن: {activeProviderForModal.name}
+                  </h3>
+                  <button onClick={() => setReportModalOpen(false)} style={{ background: 'none', border: 'none', fontSize: '18px', cursor: 'pointer', color: '#666' }}>✕</button>
+                </div>
+
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.target;
+                  try {
+                    const res = await fetch('/api/reports', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        providerId: activeProviderForModal._id,
+                        userName: form.userName.value,
+                        message: form.message.value
+                      })
+                    });
+                    const d = await res.json();
+                    alert(d.message || 'تم إرسال البلاغ للإدارة');
+                    setReportModalOpen(false);
+                  } catch(err) {
+                    alert('فشل إرسال البلاغ');
+                  }
+                }} style={{ display: 'flex', flexDirection: 'column', gap: '12px', textAlign: 'right', fontSize: '13px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>اسمك:</label>
+                    <input type="text" name="userName" required placeholder="اسمك الثلاثي" style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo' }} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: '700', marginBottom: '4px' }}>تفاصيل الشكوى:</label>
+                    <textarea name="message" rows="4" required placeholder="يرجى توضيح المشكلة بدقة..." style={{ width: '100%', padding: '10px', borderRadius: '10px', border: '1px solid #ccc', fontFamily: 'Cairo', resize: 'none' }}></textarea>
+                  </div>
+                  <button type="submit" style={{ padding: '12px', borderRadius: '10px', border: 'none', background: '#e11d48', color: 'white', fontWeight: '800', cursor: 'pointer', fontFamily: 'Cairo', marginTop: '6px' }}>
+                    إرسال الشكوى
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Footer (Exact same original design) */}
+          <footer className="footer">
+            <div className="container">
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ color: '#ffffff', marginBottom: '15px', fontSize: '18px', fontWeight: '700', letterSpacing: '0.5px' }}>
+                  katrina hub &copy; {new Date().getFullYear()}
+                </p>
+
+                <div style={{ margin: '20px 0' }}>
+                  <button onClick={() => setView('admin-login')} className="admin-pill-btn">
+                    <i className="fas fa-user-shield" style={{ fontSize: '20px' }}></i>
+                    دخول لوحة التحكم
+                  </button>
+                </div>
+
+                <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '15px', marginTop: '20px', lineHeight: '1.7', fontWeight: '500' }}>
+                  جميع الحقوق محفوظة © كنيسة السيدة العذراء وسانت كاترين – الناصرية – العامرية – الإسكندرية<br />
+                  هذا الموقع تابع رسميًا لإدارة الكنيسة ويُستخدم لتنظيم الخدمات والأنشطة.
+                </p>
+              </div>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

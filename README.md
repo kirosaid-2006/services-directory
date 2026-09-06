@@ -1,5 +1,4 @@
-# 🌟 Katrina Hub - دليل خدمات أبناء الكنيسة (MERN Stack Platform)
-
+# 🌟 Katrina Hub 
 <div align="center">
 
 ![Node.js](https://img.shields.io/badge/Node.js-v18%2B-green?logo=node.js)

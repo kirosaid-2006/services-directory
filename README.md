@@ -14,19 +14,7 @@
 
 </div>
 
----
 
-## 📖 نبذة عن المشروع (Overview)
-
-تم بناء هذا المشروع لإعادة هندسة وتحديث أنظمة الدليل الخدمي التقليدية، وتحويلها إلى تطبيق **MERN Stack** احترافي قائم على المعمارية النظيفة (Clean Layered Architecture)، ويوفر تجربة مستخدم سريعة وسلسة تدعم اللغة العربية (RTL) بشكل أصيل.
-
-المشروع مصمم ليكون **نموذج عمل متقدم (Portfolio Showcase)** يبرز المهارات البرمجية التالية أمام مسؤولي التوظيف والشركات:
-- **Backend**: تصميم RESTful APIs معيارية، حماية الـ Endpoints عبر JWT Middleware، تشفير كلمات المرور باستخدام `bcryptjs`، معالجة مركزية للأخطاء (Centralized Error Handler)، وتقييد معدل الطلبات (Rate Limiting).
-- **Frontend**: واجهة تفاعلية بـ React 18 و Tailwind CSS مع تجاوب كامل (Responsive Mobile-First) وتجربة مستخدم عصرية، إدارة الحالة عبر Context API، والربط المحمي مع الخادم عبر Axios Interceptors.
-- **Database**: تصميم قواعد بيانات NoSQL عبر MongoDB و Mongoose مع بناء Virtuals، علاقات (Populate)، وفهارس بحث سريعة (Indexing).
-- **Data Seeder**: سكريبت تهيئة فوري يقوم بإنشاء المهن، الفنيين، حساب الأدمن، والمراجعات التجريبية بضغطة زر واحدة.
-
----
 
 ## ✨ الميزات الرئيسية (Features)
 
